@@ -19,6 +19,13 @@
 // operand는 양수만
 // 잘못 입력된 수식일 경우 에러메시지 출력
 
+// 느낀점: equals()랑 ==랑 구분해서 사용하자
+// data.equals("String")이고, 이건 값만 비교한다.
+//반면 ==는 주소값까지 비교한다.
+//postfix 계산 메소드를 실행할 때 계속 array[i].equals("+") -> 이런식으로 if문을 돌려서 값이 제대로 계산이 안됐던 것.
+//array[i].charAt(0) == '+' -> 이렇게 고쳐주니까 해결됐다. array[i]는 String형이니까 array[i]=="+", 이렇게나 array[i]=='+' 이따위로 하면 절대 안됐음.
+//charAt(index)로 정확한 char값을 지목해줘야했다!!!!!.
+
 import java.util.EmptyStackException;
 import java.util.Scanner;
 public class MyCalculator {
