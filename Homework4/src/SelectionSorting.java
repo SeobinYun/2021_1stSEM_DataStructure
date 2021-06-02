@@ -20,7 +20,7 @@ public class SelectionSorting {
         selectionSort(array); //selectionSort method 호출
 
         System.out.print("\n최종배열출력 : ");
-        for(int i=0; i<array.length; i++){ // selectionSorting method 실행 후 최종배열 출력
+        for(int i=0; i<array.length; i++){ // selectionSort method 실행 후 최종배열 출력
             System.out.print(array[i] + "\t");
         }
         System.out.println();

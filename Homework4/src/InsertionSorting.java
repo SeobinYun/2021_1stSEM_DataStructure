@@ -15,16 +15,16 @@ public class InsertionSorting {
             System.out.print(array[i] + "\t");
         }
 
-        insertionSorting(array); // insertionSorting method 실행
+        insertionSorting(array); // insertionSortmethod 실행
 
         System.out.print("\n최종배열출력 : ");
-        for(int i=0; i<array.length; i++){ // insertionSorting method 실행 후 최종배열 출력
+        for(int i=0; i<array.length; i++){ // insertionSort method 실행 후 최종배열 출력
             System.out.print(array[i] + "\t");
         }
         System.out.println();
     }
 
-    private static void insertionSorting(int[] array){ // insertionSorting Method
+    private static void insertionSorting(int[] array){ // insertionSort Method
         int index = 1; // 몇단계인지 알려줄 index 변수
         for(int i=0; i< array.length; i++){
             int target = array[i]; // array[i]를 기준으로 삼음

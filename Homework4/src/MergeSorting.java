@@ -19,7 +19,7 @@ public class MergeSorting {
         mergeSort(array, 0, array.length); // mergeSort method 실행
 
         System.out.print("\n최종배열출력 : "); 
-        for (int i = 0; i < array.length; i++) { // insertionSorting method 실행 후 최종배열 출력
+        for (int i = 0; i < array.length; i++) { // mergeSorting method 실행 후 최종배열 출력
             System.out.print(array[i] + "\t");
         }
         System.out.println();
@@ -54,7 +54,7 @@ public class MergeSorting {
             }
 
         System.out.print("\nmerge 실행 : ");
-        for(int i=0; i<data.length; i++){ // selectionSorting method 실행 후 최종배열 출력
+        for(int i=0; i<data.length; i++){ // mergeSort method 실행 후 최종배열 출력
             System.out.print(data[i] + "\t");
         }
     }
