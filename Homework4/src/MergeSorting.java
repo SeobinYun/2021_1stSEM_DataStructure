@@ -1,4 +1,6 @@
 public class MergeSorting {
+    private static int[] sorted;        // 합치는 과정에서 정렬하여 원소를 담을 임시배열
+
     public static void main(String[] args) {
         int[] array = new int[32];
         for (int i = 0; i < array.length; i++) {
@@ -11,43 +13,50 @@ public class MergeSorting {
             }
         }
         System.out.print("배열생성 : ");
-        for(int i=0; i<array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + "\t");
         }
         System.out.println();
 
 
-        mergeSort(array);
+        mergeSort(array, 0, array.length);
+
+        System.out.print("\n최종배열출력 : ");
+        for (int i = 0; i < array.length; i++) { // insertionSorting method 실행 후 최종배열 출력
+            System.out.print(array[i] + "\t");
+        }
+        System.out.println();
     }
 
-    private static void mergeSort(int[] array, int first, int n){
-        if(n>1){
-            int n1=n/2;
-            int n2=n-n1;
+    private static void mergeSort(int[] array, int first, int n) {
+        if (n > 1) {
+            int n1 = n / 2;
+            int n2 = n - n1;
             mergeSort(array, first, n1);
-            mergeSort(array,first+n1, n2);
+            mergeSort(array, first + n1, n2);
             merge(array, first, n1, n2);
+
         }
     }
 
-    private static void merge(int[] array, int first, int n1, int n2){
-        int[] answer = new int[n1+n2];
+    private static void merge(int[] array, int first, int n1, int n2) {
+        int[] answer = new int[n1 + n2];
         int copied = 0;
-        int copied1= 0;
-        int copied2= 0;
-        while((copied1<n1)&&(copied2<n2)){
-            if(array[first+copied1]<array[first+n1+copied]){
-                answer[copied++]=array[first+(copied1++)];
-            }
-            else{
-                answer[copied++]=array[first+n1+(copied2++)];
+        int copied1 = 0;
+        int copied2 = 0;
+        while ((copied1 < n1) && (copied2 < n2)) {
+            if (array[first + copied1] < array[first + n1 + copied]) {
+                answer[copied++] = array[first + (copied1++)];
+            } else {
+                answer[copied++] = array[first + n1 + (copied2++)];
             }
         }
-        while(copied1<n1){
-            answer[copied++]=array[first+(copied1++)];
+        while (copied1 < n1) {
+            answer[copied++] = array[first + (copied1++)];
         }
-        for(int i=0; i<copied; i++){
-            array[first+i] = answer[i];
+
+        for (int i = 0; i < copied; i++) {
+            array[first + i] = answer[i];
         }
     }
 }
