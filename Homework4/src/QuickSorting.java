@@ -1,5 +1,5 @@
 public class QuickSorting {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int[] array = new int[32];
         for (int i = 0; i < array.length; i++) {
             array[i] = (int) (Math.random() * 32);
@@ -10,107 +10,66 @@ public class QuickSorting {
                 }
             }
         }
-        System.out.print("배열생성 : ");
-        for(int i=0; i<array.length; i++) {
+        System.out.print("배열생성 : "); // 랜덤으로 생성한 배열 출력
+        for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + "\t");
         }
         System.out.println();
 
-        quickSort(array, 0, array.length-1);
+        quickSort(array, 0, array.length); // quickSort method 실행
 
         System.out.print("\n최종배열출력 : ");
-        for(int i=0; i<array.length; i++){ // Quicksorting method 실행 후 최종배열 출력
+        for (int i = 0; i < array.length; i++) { // Quicksort method 실행 후 최종배열 출력
             System.out.print(array[i] + "\t");
         }
         System.out.println();
     }
-    private static void quickSort(int[] data, int first, int n){
 
-        if(n>1){
-            int pivotIndex = partition(data, first, n);
-            int n1=pivotIndex - first;
-            int n2=n-n1-1;
+    private static void quickSort(int[] data, int first, int n) {
+        if (n > 1) { // 우선 quickSort를 진행하려면 배열의 길이가 1 이상이어야 하므로 n이 1이상일 때, quickSort 진행
+            int pivotIndex = partition(data, first, n); // pivot의 index를 리턴해주는 partition method 진행
+            int n1 = pivotIndex - first;
+            int n2 = n - n1 - 1;
 
-            quickSort(data, first, n1);
-            quickSort(data, pivotIndex+1, n2);
-
-
+            quickSort(data, first, n1); // 왼쪽에 대한 quickSort
+            quickSort(data, pivotIndex + 1, n2); // 오른쪽에 대한 quickSort
         }
     }
 
-    private static int partition(int[] data, int left, int right){
-        int pivot = data[left];
-        int lo=left;
-        int hi=right;
-
-        while(lo<hi){
-            while(data[hi]>pivot && lo<hi){
-                hi--;
-            }
-            swap(data, lo, hi);
-        }
-
-        swap(data, left, lo);
-
-        return lo;
-    }
-
-    private static void swap(int[] data, int i, int j){
+    private static void swap(int[] data, int i, int j) {
         int tmp = data[i];
-        data[i]=data[j];
-        data[j]=tmp;
+        data[i] = data[j];
+        data[j] = tmp;
     }
-//
-//    private static int partition(int[] data, int first, int n){
-//        int pivot = data[first];
-//        int tooBigIndex = first+1;
-//        int tooSmallIndex= first+n-1;
-//
-//
-//    }
 
-//    private static void quickSort(int[] array, int left, int right){
-//        if(left>=right){
-//            return;
-//        }
-//        int pivot = partition(array, left, right);
-//        System.out.print("\n1단계 : ");
-//        for(int i=0; i<array.length; i++){ // selectionSorting method 실행 후 최종배열 출력
-//            System.out.print(array[i] + "\t");
-//        }
-//
-//        quickSort(array, left, pivot-1);
-//        quickSort(array, pivot+1, right);
-//
-//
-//    }
-//
-//    private static int partition(int[] array, int left, int right){
-//        int a= left;
-//        int b= right;
-//        int pivot = array[left];
-//
-//        while(a<b){
-//            while(array[b]>pivot && a<b){
-//                b--;
-//            }
-//
-//            while(array[a]<=pivot&&a<b){
-//                a++;
-//            }
-//
-//            swap(array, a,b);
-//        }
-//
-//        swap(array, left,a);
-//
-//        return a;
-//    }
-//
-//    private static void swap(int[] array, int a, int b){
-//        int tmp = array[a];
-//        array[a]=array[b];
-//        array[b]=tmp;
-//    }
+    private static int partition(int[] data, int first, int n) {
+        int pivot = data[first];
+        int tooBigIndex = first + 1;
+        int tooSmallIndex = first + n - 1;
+        while (tooBigIndex <= tooSmallIndex) {
+            while (tooBigIndex < first + n && data[tooBigIndex] <= pivot) {
+                tooBigIndex++;
+            }
+            while (data[tooSmallIndex] > pivot) {
+                tooSmallIndex--;
+            }
 
+            if (tooBigIndex < tooSmallIndex) {
+                swap(data, tooBigIndex, tooSmallIndex);
+
+                System.out.print("\npartition후 : ");
+                for (int i = 0; i < data.length; i++) {
+                    System.out.print(data[i] + "\t");
+                }
+            }
+        }
+
+        data[first] = data[tooSmallIndex];
+        data[tooSmallIndex] = pivot;
+        System.out.print("\ncross 후\t: ");
+        for (int i = 0; i < data.length; i++) {
+            System.out.print(data[i] + "\t");
+        }
+        return tooSmallIndex;
+    }
 }
