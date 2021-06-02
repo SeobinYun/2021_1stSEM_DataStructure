@@ -14,12 +14,11 @@ public class QuickSorting {
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + "\t");
         }
-        System.out.println();
 
         quickSort(array, 0, array.length); // quickSort method 실행
 
         System.out.print("\n최종배열출력 : ");
-        for (int i = 0; i < array.length; i++) { // Quicksort method 실행 후 최종배열 출력
+        for (int i = 0; i < array.length; i++) { // quicksort method 실행 후 최종배열 출력
             System.out.print(array[i] + "\t");
         }
         System.out.println();
@@ -44,32 +43,33 @@ public class QuickSorting {
 
     private static int partition(int[] data, int first, int n) {
         int pivot = data[first];
-        int tooBigIndex = first + 1;
-        int tooSmallIndex = first + n - 1;
+        int tooBigIndex = first + 1; // first의 오른쪽에 tooBigIndex 설정
+        int tooSmallIndex = first + n - 1; // 맨 오른쪽 끝 index를 tooSmallIndex로 설정
         while (tooBigIndex <= tooSmallIndex) {
-            while (tooBigIndex < first + n && data[tooBigIndex] <= pivot) {
+            while (tooBigIndex < first + n && data[tooBigIndex] <= pivot) { // pivot보다 큰 값을 찾는 과정이므로, data[tooBigIndex]가 pivot보다 작으면 --해줘서 계속 찾아나감.
                 tooBigIndex++;
             }
-            while (data[tooSmallIndex] > pivot) {
+            while (data[tooSmallIndex] > pivot) { // pivot보다 작은 값을 찾는 과정이므로, data[tooSmallIndex]가 pivot보다 클 경우는 tooSmallIndex를 -- 해줘서 계속 찾아나감.
                 tooSmallIndex--;
             }
 
-            if (tooBigIndex < tooSmallIndex) {
+            if (tooBigIndex < tooSmallIndex) { // tooBigIndex와 tooSmallIndex가 cross되지 않을 때는 tooBigIndex와 tooSmallIndex를 서로 swap해줌
                 swap(data, tooBigIndex, tooSmallIndex);
 
-                System.out.print("\npartition후 : ");
+                System.out.print("\npartition후 : "); // partition 후 배열 상태 출력
                 for (int i = 0; i < data.length; i++) {
                     System.out.print(data[i] + "\t");
                 }
             }
         }
 
-        data[first] = data[tooSmallIndex];
+        data[first] = data[tooSmallIndex]; // tooBigIndex와 tooSmallIndex가 크로스 되었을때는 tooSmallIndex와 pivot의 위치를 바꿔줌
         data[tooSmallIndex] = pivot;
-        System.out.print("\ncross 후\t: ");
+
+        System.out.print("\ncross 후\t: "); // cross 후 배열 상태 출력
         for (int i = 0; i < data.length; i++) {
             System.out.print(data[i] + "\t");
         }
-        return tooSmallIndex;
+        return tooSmallIndex; // 이제 pivot이 되는 tooSmallIndex 리턴
     }
 }
