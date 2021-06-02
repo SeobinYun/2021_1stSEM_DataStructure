@@ -17,7 +17,13 @@ public class SelectionSorting {
         }
         System.out.println();
 
-        SelectionSort(array); //SelectionSort method 호출
+        selectionSort(array); //selectionSort method 호출
+
+        System.out.print("\n최종배열출력 : ");
+        for(int i=0; i<array.length; i++){ // selectionSorting method 실행 후 최종배열 출력
+            System.out.print(array[i] + "\t");
+        }
+        System.out.println();
     }
 
     private static void swap(int[] array, int min, int i){ // 두 인덱스 값의 위치를 바꾸어주는 swap method
@@ -32,7 +38,7 @@ public class SelectionSorting {
     }
 
 
-    private static void SelectionSort(int[] array){ // SelectionSort method
+    private static void selectionSort(int[] array){ // selectionSort method
         int min; // 최소값을 저장해줄 변수
         int index=1; // 몇단계인지 출력할 index 변수
         for(int i=0; i<array.length; i++){

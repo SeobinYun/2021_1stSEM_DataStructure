@@ -16,5 +16,38 @@ public class MergeSorting {
         }
         System.out.println();
 
+
+        mergeSort(array);
+    }
+
+    private static void mergeSort(int[] array, int first, int n){
+        if(n>1){
+            int n1=n/2;
+            int n2=n-n1;
+            mergeSort(array, first, n1);
+            mergeSort(array,first+n1, n2);
+            merge(array, first, n1, n2);
+        }
+    }
+
+    private static void merge(int[] array, int first, int n1, int n2){
+        int[] answer = new int[n1+n2];
+        int copied = 0;
+        int copied1= 0;
+        int copied2= 0;
+        while((copied1<n1)&&(copied2<n2)){
+            if(array[first+copied1]<array[first+n1+copied]){
+                answer[copied++]=array[first+(copied1++)];
+            }
+            else{
+                answer[copied++]=array[first+n1+(copied2++)];
+            }
+        }
+        while(copied1<n1){
+            answer[copied++]=array[first+(copied1++)];
+        }
+        for(int i=0; i<copied; i++){
+            array[first+i] = answer[i];
+        }
     }
 }
